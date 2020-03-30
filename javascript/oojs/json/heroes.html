@@ -20,10 +20,74 @@
       </section>
 
     <script>
-    const header = document.querySelector('header');
-    const section = document.querySelector('section');
+      const header = document.querySelector('header');
+      const section = document.querySelector('section');
 
+      // URL du fichier JSON 
+      var requestURL = "https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json"
 
+      // Créer une requête = instancier un nouvel objet XMLHttpRequest 
+      // Ouvrir une nouvelle requête  sur notre URL
+      var request = new XMLHttpRequest();
+      request.open('GET', requestURL);
+
+      // Signaler au serveur que nous attendons une réponse au format JSON 
+      // Et envoyer la requête
+      request.responseType = 'json';
+      request.send();
+
+      // La réponse du serveur et son traitement
+      request.onload = function () {
+        var superHeroes = request.response;
+        populateHeader(superHeroes);
+        showHeroes(superHeroes);
+      }
+
+      function populateHeader(jsonObj) {
+        var myH1 = document.createElement('h1');
+        myH1.textContent = jsonObj.squadName;
+        header.appendChild(myH1);
+
+        var para = document.createElement('p');
+        para.textContent = "Hometown : " + jsonObj.homeTown + " // Formed : " + jsonObj["formed"];
+        header.appendChild(para);
+      }
+
+      function showHeroes(jsonObj) {
+        var members = jsonObj['members'];
+
+        members.forEach(member => {
+          var article = document.createElement('article');
+          var h2 = document.createElement('h2');
+          var paraIdentity = document.createElement('p');
+          var paraAge = document.createElement('p');
+          var ulPowers = document.createElement('ul');
+
+          //  Nom du super héro
+          h2.textContent = member['name'];
+
+          // secret identity et âge
+          paraAge.textContent = " Age : " + member['age'];
+          paraIdentity.textContent = " Secret ID : " + member['secretIdentity'];
+
+          // Crée la liste des supers pouvoirs
+          var powers = member['powers'];
+          powers.forEach(power => {
+            let liPower = document.createElement('li');
+            liPower.textContent = power;
+            ulPowers.appendChild(liPower);
+          });
+      
+
+          article.appendChild(h2);
+          article.appendChild (paraIdentity);
+          article.appendChild (paraAge);
+          article.appendChild (ulPowers);
+
+          section.appendChild(article);
+
+        });
+      }
 
     </script>
   </body>
