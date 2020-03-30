@@ -13,8 +13,19 @@ function random(min,max) {
   return num;
 }
 
-//Objet Ball
-function Ball(x, y, velX, velY, color, size) {
+// Objet Shape
+function Shape(x, y, velX, velY, exists) {
+  this.x = x;
+  this.y = y;
+  this.velX = velX;
+  this.velY = velY;
+  this.exists = exists;
+}
+
+//Objet Ball qui hérite de Shape
+function Ball(x, y, velX, velY, exists, color, size) {
+  // Récupérer les paramètres de Shape
+  Shape.call(this, x, y, velX, velY, exists);
   this.x = x;
   this.y = y;
   this.velX = velX;
@@ -22,6 +33,12 @@ function Ball(x, y, velX, velY, color, size) {
   this.color = color;
   this.size = size;
 }
+
+// Pour que la classe Ball hérite des méthodes de Shape
+// et que son prototype redevienne bien celui de Ball
+Ball.prototype = Object.create(Shape.prototype);
+Ball.prototype.constructor = Ball;
+
 
 Ball.prototype.draw = function() {
   ctx.beginPath();
@@ -76,6 +93,7 @@ function loop() {
       random(0,height),
       random(-7,7),
       random(-7,7),
+      true,
       'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')',
       random(10,20)
     );

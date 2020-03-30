@@ -14,14 +14,21 @@ function random(min,max) {
 }
 
 // REECRIT EN ES6
-
-//Objet Ball
-class Ball {
-  constructor(x, y, velX, velY, color, size) {
+// Objet Shape
+class Shape {
+  constructor(x, y, velX, velY, exists) {
     this.x = x;
     this.y = y;
     this.velX = velX;
     this.velY = velY;
+    this.exists = exists;
+  }
+}
+
+//Objet Ball
+class Ball extends Shape {
+  constructor(x, y, velX, velY, exists, color, size) {
+    super(x, y, velX, velY, exists);
     this.color = color;
     this.size = size;
   } 
@@ -83,6 +90,7 @@ function loop() {
       random(0,height),
       random(-7,7),
       random(-7,7),
+      true,
       'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')',
       random(10,20)
     );
