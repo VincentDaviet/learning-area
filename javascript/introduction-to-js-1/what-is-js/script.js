@@ -1,11 +1,11 @@
-function createParagraph() {
-  let para = document.createElement('p');
-  para.textContent = 'You clicked the button!';
-  document.body.appendChild(para);
-}
+  function createParagraph() {
+    let para = document.createElement('p');
+    para.textContent = 'Vous avez cliqué sur le bouton!';
+    document.body.appendChild(para);
+  }
 
-const buttons = document.querySelectorAll('button');
+  const buttons = document.querySelectorAll('button');
 
-for(let i = 0; i < buttons.length ; i++) {
-  buttons[i].addEventListener('click', createParagraph);
-}
+ for(let i = 0; i < buttons.length ; i++) {
+    buttons[i].addEventListener('click', createParagraph);
+  }

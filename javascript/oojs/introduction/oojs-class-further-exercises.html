@@ -67,6 +67,9 @@
           alert('Hi! I\'m ' + this.name.first + '.');
         };
       };
+      Person.prototype.aurevoir = function() {
+        alert(this.name.first + ' est sorti. Au revoir !');
+      }
 
       let person1 = new Person('Tammi', 'Smith', 32, 'neutral', ['music', 'skiing', 'kickboxing']);
     </script>

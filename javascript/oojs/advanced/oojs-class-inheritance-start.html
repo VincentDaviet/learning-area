@@ -88,7 +88,41 @@
         alert(this.name.first + ' has left the building. Bye for now!');
       }
 
+
+      // PROFESSEUR
+      function Professeur(prenom, nom, age, genre, interets, matiere) {
+        Person.call(this, prenom, nom, age, genre, interets);
+        this.matiere = matiere;
+      }   
+      Professeur.prototype = Object.create(Person.prototype);
+      Professeur.prototype.constructor = Professeur;
+      Professeur.prototype.saluer = function() {
+        var prefix;
+
+        if (this.gender === 'mâle' || this.gender === 'Mâle' || this.gender === 'm' || this.gender === 'M') {
+          prefix = 'M.';
+        } else if (this.gender === 'femelle' || this.gender === 'Femelle' || this.gender === 'f' || this.gender === 'F') {
+          prefix = 'Mme';
+        } else {
+          prefix = '';
+        }
+
+        alert('Bonjour. Mon nom est ' + prefix + ' ' + this.name.first + ', et j\'enseigne ' + this.matiere + '.');
+      }
+
+      // ETUDIANT
+      function Etudiant(prenom, nom, age, genre, interets, matiere) {
+        Person.call(this, prenom, nom, age, genre, interets);
+      }   
+      Etudiant.prototype = Object.create(Person.prototype); // ou Etudiant.prototype = new Person()
+      Etudiant.prototype.constructor = Etudiant;
+      Etudiant.prototype.saluer = function() {
+        alert('Yo, I am ' + this.name.first + '.');
+      };
+
       let person1 = new Person('Tammi', 'Smith', 17, 'female', ['music', 'skiing', 'kickboxing']);
+      var professeur1 = new Professeur('Cédric', 'Villani', 44, 'm', ['football', 'cuisine'], 'les mathématiques');
+      var etudiant1 = new Etudiant('Vince', 'Dcaraibes', 33, 'm', ['football', 'cuisine'], 'les mathématiques');
 
     </script>
 </html>
