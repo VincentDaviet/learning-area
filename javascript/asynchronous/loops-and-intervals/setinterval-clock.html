@@ -11,15 +11,71 @@
   </head>
   <body>
     <p class="clock"></p>
+    <button class="start">Start</button>
+    <button class="stop">Stop</button>
+    <button class="reset">Reset</button>
     <script>
-      function displayTime() {
-        let date = new Date();
-        let time = date.toLocaleTimeString();
-        document.querySelector('.clock').textContent = time;
+      // Récupération des boutons
+      let btnStart = document.querySelector(".start");
+      let btnStop = document.querySelector(".stop");
+      let btnReset = document.querySelector(".reset");
+
+      // Ecouteurs sur les boutons
+      btnStart.addEventListener('click', startTimer);
+      btnStop.addEventListener('click', stopTimer);
+      btnReset.addEventListener('click', resetTimer);
+
+      let stopClock;
+      // let secondsSpent = 0;
+      let time = 0;
+      let timePaused =0;
+      // let startTime;
+
+      function displayTimer(startTime){
+        // VARIANTE MAIS PAS ASSEZ PRECIS CAR PAS GARANTIE d'avoir un interval de 1s (peut être +)
+        //date.setSeconds(secondsSpent)
+        // let time = date.toLocaleTimeString();
+        // secondsSpent++;
+
+        time = ((new Date() - startTime)/1000) + timePaused; //number of seconds after the start button was clicked
+        let hours = Math.floor(time/3600);
+        let minutes = Math.floor((time-hours)/60);
+        let seconds = Math.floor(time%60); // ou (time-minutes)/60
+
+        // ajout de 0 si <10
+        let displayHours = (hours < 10) ? '0' + hours : hours;
+        let displayMinutes = (minutes < 10) ? '0' + minutes : minutes;
+        let displaySeconds = (seconds < 10) ? '0' + seconds : seconds;
+
+        // Write the current stopwatch display time into the display paragraph
+        document.querySelector('.clock').textContent = displayHours + ':' + displayMinutes + ':' + displaySeconds;
+        
       }
 
-      displayTime();
-      const createClock = setInterval(displayTime, 1000);
+      function startTimer(){
+        btnStart.setAttribute("disabled", "true"); // ou startBtn.disabled = true;
+        let startTime = new Date(); // ou Date.now()
+        displayTimer(startTime);
+        stopClock = setInterval(displayTimer, 1000, startTime);
+      }
+
+      function stopTimer(){
+        btnStart.removeAttribute("disabled");
+        clearInterval(stopClock);
+        timePaused = time;
+        // secondsSpent=0;
+      }
+
+      function resetTimer(){
+        stopTimer();
+        time =0;
+        timePaused=0;
+        btnStart.removeAttribute("disabled");
+        displayTimer(new Date());
+      }
+      // let currentClock = startTimer();
+      displayTimer(new Date()); // afficher au chargement
+
     </script>
   </body>
 </html>
