@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>My test page</title>
+  </head>
+  <body>
+    <p>This is my page</p>
+    <script>
+      // let promise = fetch('tea.jpg'); // promise 'pending' === intermediate state 
+      // let promise2 = promise.then(response => response.blob()) // when promise if 'fulfilled', ensure that the response body is fully downloaded
+      // let promise3 = promise2.then( myBlob => {
+      //   let objectURL = URL.createObjectURL(myBlob);
+      //   let image = document.createElement('img');
+      //   image.src = objectURL;
+      //   document.body.appendChild(image);
+      // })
+      // let errorCase = promise3.catch(e => {
+      //   console.log('There has been a problem with your fetch operation: ' + e.message);
+      // });
+
+      fetch('tea.jpg')
+      .then(response => {
+        console.log(response); // attention le catch n'est jamais appelé car le status 404 n'envoie pas de rejected promise
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        } else {
+          return response.blob();
+        }
+      })
+      .then(myBlob => {
+        let objectURL = URL.createObjectURL(myBlob);
+        let image = document.createElement('img');
+        image.src = objectURL;
+        document.body.appendChild(image);
+      })
+      .catch ( e => {
+        console.log('There has been a problem with your fetch operation: ' + e.message);
+      });
+      
+    </script>
+  </body>
+</html>
