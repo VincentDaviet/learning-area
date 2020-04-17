@@ -30,6 +30,34 @@
     </ul>
 
     <script>
+      //  trois variables, contenant des références à la liste <ul>, champ <input>, et bouton <button>.
+      let ul = document.querySelector('ul');
+      let input = document.querySelector('input');
+      let button = document.querySelector('button');
+
+      // Au clic sur le bouton
+      button.onclick = () => {
+        // on récupère la valeur et on efface le champs
+        let valueInput = input.value;
+        input.value = '';
+
+        // on crée les éléments pour la nouvelle ligne: un élément de liste <li>, un <span> et <button>
+        let listItem = document.createElement('li');
+        let spanItem = document.createElement('span');
+        let buttonDeleteItem = document.createElement('button');
+        listItem.appendChild(spanItem);
+        listItem.appendChild(buttonDeleteItem);
+
+        spanItem.textContent = valueInput;
+        buttonDeleteItem.textContent = "Supprimer";
+        ul.appendChild(listItem);
+
+        buttonDeleteItem.addEventListener("click", () => {
+          ul.removeChild(listItem);
+        });
+
+        input.focus();
+      }
 
     </script>
   </body>

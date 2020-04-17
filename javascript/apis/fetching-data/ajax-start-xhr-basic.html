@@ -62,6 +62,36 @@
 
     <script>
 
+      var verseChoose = document.querySelector('select');
+      var poemDisplay = document.querySelector('pre');
+
+      // lorsqu'on choisit un nouveau verset
+      verseChoose.onchange = function() {
+        var verse = verseChoose.value;
+        updateDisplay(verse);
+      };
+
+      // MAJ texte
+      function updateDisplay(verse) {
+        // nom du fichier à afficher
+        verse = verse.replace(" ", "");
+        verse = verse.toLowerCase();
+        var url = verse + '.txt';
+
+        // XHR (old style)
+        var request = new XMLHttpRequest();
+        request.open('GET', url);
+        request.responseType = 'text';
+
+        request.onload = function() {
+          poemDisplay.textContent = request.response;
+        };
+        request.send();
+      }
+      
+      // afficher le verset 1 au 1er chargement
+      updateDisplay('Verse 1');
+      verseChoose.value = 'Verse 1';
     </script>
   </body>
 </html>

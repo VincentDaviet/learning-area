@@ -3,11 +3,55 @@
   <head>
     <meta charset="utf-8">
     <title>Simple DOM example</title>
+    <style>
+      .highlight {
+        color: white;
+        background-color: black;
+        padding: 10px;
+        width: 250px;
+        text-align: center;
+      }
+      </style>
   </head>
   <body>
       <section>
         <img src="dinosaur.png" alt="A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.">
         <p>Here we will add a link to the <a href="https://www.mozilla.org/">Mozilla homepage</a></p>
       </section>
+      <script>
+        // modification du lien
+        var link = document.querySelector('a');
+        link.textContent = "Developer Mozilla Network"
+        link.href = 'https://developer.mozilla.org';
+
+        // ajout d'un paragraphe dans la section
+        var para = document.createElement('p');
+        para.textContent = "We hope you enjoyed the ride.";
+        var sect = document.querySelector('section');
+        sect.appendChild(para);
+
+        // ajout d'un noeud texte au 1er paragraphe
+        var text = document.createTextNode(' — the premier source for web development knowledge.');
+        var linkPara = document.querySelector('p');
+        linkPara.appendChild(text);
+
+        //déplacer le premier paragraphe au bas de la section
+        sect.appendChild(linkPara);
+
+        // suppression du paragraphe 
+        //sect.removeChild(linkPara);
+        //linkPara.parentNode.removeChild(linkPara);
+
+        // Modif style inline
+        // para.style.color = 'white';
+        // para.style.backgroundColor = 'black';
+        // para.style.padding = '10px';
+        // para.style.width = '250px';
+        // para.style.textAlign = 'center';
+
+        // Modif style par classe CSS
+        para.setAttribute('class', 'highlight');
+
+      </script>
   </body>
 </html>

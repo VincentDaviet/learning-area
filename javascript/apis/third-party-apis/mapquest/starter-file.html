@@ -6,7 +6,7 @@
     <style>
       #map {
         width: 600px;
-        height: 600px;
+        height: 400px;
       }
     </style>
     <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
@@ -21,9 +21,41 @@
         // 'map' refers to a <div> element with the ID map
         var map = L.mapquest.map('map', {
           center: [53.480759, -2.242631],
-          layers: L.mapquest.tileLayer('map'),
+          layers: L.mapquest.tileLayer('light'),
           zoom: 12
         });
+
+        // barre d'actions
+        map.addControl(L.mapquest.control({position:'bottomright'}));
+
+        // bouton pour changer le fond de carte
+        map.addControl(L.mapquest.satelliteControl());
+
+        // ajout d'un marker +popup, avec Leaflet 
+        L.marker([53.480759, -2.242631], {
+          icon: L.mapquest.icons.marker({
+            primaryColor: '#22407F',
+            secondaryColor: '#3B5998',
+            shadow: true,
+            size: 'sm',
+            symbol: 'C'
+          })
+        })
+        .bindPopup('Ici se trouve Manchester !')
+        .addTo(map);
+
+       // ajout d'un marker avec mapquest
+      //   L.mapquest.textMarker([53.480759, -2.242631], {
+      //     text: 'Coffee Shop',
+      //     subtext: 'Iconic coffeehouse chain',
+      //     position: 'right',
+      //     type: 'marker',
+      //     icon: {
+      //       primaryColor: '#333333',
+      //       secondaryColor: '#333333',
+      //       size: 'sm'
+      //     }
+      //   }).addTo(map);
       }
     </script>
   </head>

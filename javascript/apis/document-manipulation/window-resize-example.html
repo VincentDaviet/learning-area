@@ -24,7 +24,21 @@
     </div>
 
     <script>
+      function redimensionner() {
+        // récupérer  la largeur et la hauteur de la fenêtre
+        let WIDTH = window.innerWidth;
+        let HEIGHT = window.innerHeight;
+        // modifier dynamiquement la largeur et hauteur du <div> pour qu'elles soient égales à celles de la fenêtre
+        div.style.width = WIDTH + 'px';
+        div.style.height = HEIGHT + 'px';
+      }
 
+      let div = document.querySelector('div');
+      redimensionner();
+
+
+      // pour que le <div> soit redimensionné à chaque fois que la fenêtre est redimensionnée.
+      window.onresize = redimensionner;
     </script>
   </body>
 </html>
