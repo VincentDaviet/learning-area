@@ -176,10 +176,8 @@
   function previousPage(e) {
     if(pageNumber > 0) {
       pageNumber--;
-    } else {
-      return;
+      fetchResults(e);
     }
-    fetchResults(e);
   };
 
   </script>

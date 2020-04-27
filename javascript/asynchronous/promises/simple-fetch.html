@@ -13,7 +13,7 @@
       // by taking the returned response and running blob() on it to transform it into a blob
       let promise2 = promise.then(response => {
         // The promise fetch() does NOT reject on HTTP errors,
-        // so we need to check the Response.ok and throw manually a new Error()
+        // so we need to check the boolean Response.ok and throw manually a new Error()
         // for the promise2 to be rejected (for example when a 404 occurs).
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

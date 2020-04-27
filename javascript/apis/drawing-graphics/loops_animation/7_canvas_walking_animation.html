@@ -37,6 +37,7 @@
         ctx.fillRect(-(width/2),-(height/2),width,height);
         ctx.drawImage(image, (sprite*102), 0, 102, 148, 0+posX, -74, 102, 148);
 
+        // on change le lutin  à afficher toutes les 13èmes mimages (environ 5 images / sec )
         if(posX % 13 === 0) {
           if(sprite === 5) {
             sprite = 0;

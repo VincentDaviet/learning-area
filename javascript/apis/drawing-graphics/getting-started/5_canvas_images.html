@@ -27,8 +27,10 @@
 
       const image = new Image();
       image.src = 'firefox.png';
+      //assurer que le fichier image ait été chargé avant de l'utiliser
       image.onload = function() {
-        ctx.drawImage(image, 20, 20, 185, 175, 50, 50, 185, 175);
+        ctx.drawImage(image, 20, 20);
+        ctx.drawImage(image, 20, 20, 185, 175, 250, 50, 185, 175);
       }
     </script>
   </body>

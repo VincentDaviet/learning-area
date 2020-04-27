@@ -34,7 +34,7 @@ The finished code should look like this:
 
 <p><abbr title="Cascading Style Sheets">CSS</abbr> can also be used to make web pages more, or less, accessible.</p>
 
-<p>Chemical Formulae: H<sub>20</sub> (Water), C<sub>2</sub>H<sub>6</sub>O (Ethanol).</p>
+<p>Chemical Formulae: H<sub>2</sub>O (Water), C<sub>2</sub>H<sub>6</sub>O (Ethanol).</p>
 
 <p>Dates: <time datetime="2019-12-25">December 25<sup>th</sup> 2019</time> (Christmas Day), <time datetime="2019-11-02">November 2<sup>nd</sup> 2019</time> (Día de los Muertos).</p>
 ```
