@@ -3,11 +3,28 @@
   <head>
     <meta charset="utf-8">
     <title>Canvas</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
   </head>
   <body>
+    <canvas class="myCanvas">
+      <p>Ajouter un contenu alternatif approprié ici.</p>
+    </canvas>
 
     <script>
-    
+      let canvas = document.querySelector('.myCanvas');
+      var width = canvas.width = window.innerWidth;
+      var height = canvas.height = window.innerHeight;
+
+      // Récupération d'un objet CanvasRenderingContext2D
+      var ctx = canvas.getContext('2d');
+      
+      ctx.fillStyle = 'rgb(0, 0, 0)';
+      ctx.fillRect(0, 0, width, height);
     </script>
   </body>
 </html>
