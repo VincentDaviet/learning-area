@@ -26,6 +26,7 @@ function init() {
         displayVideo(request.result.mp4, request.result.webm, request.result.name);
       } else {
         // Fetch the videos from the network
+        console.log('taking videos from NETWORK with fetch');
         fetchVideoFromNetwork(videos[i]);
       }
     };
@@ -43,6 +44,7 @@ function init() {
     let webmBlob = fetch('videos/' + video.name + '.webm').then(response =>
       response.blob()
     );;
+    console.log("2 fetch");
 
     // Only run the next code when both promises have fulfilled
     Promise.all([mp4Blob, webmBlob]).then(function(values) {

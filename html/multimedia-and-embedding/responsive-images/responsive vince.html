@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Not responsive demo</title>
+  <style>
+    html {
+      font-family: sans-serif;
+      background-color: gray;
+    }
+
+    body {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: white;
+    }
+
+    header {
+      background: url(header.jpg) no-repeat center;
+      height: 200px;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    p {
+      line-height: 1.5;
+    }
+
+    img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+
+  </header>
+
+  <main>
+    <section>
+      <h1>My website</h1>
+
+      <p>Bascule d'image en décision artistique, avec <code>picture</code> et <code>media</code> : recadrage si largeur inférieur à 480px</p>
+
+      <picture>
+        <source media="(max-width: 479px)" srcset="japon-recadr480.jpg">
+        <source media="(min-width: 480px)" srcset="japon-full.jpg">
+        <img src="japon-full.jpg" alt="tour bouddhiste et mont fuji en fond">
+      </picture>
+
+      <p>Diverses tailles d'images avec diverses largeur de vue avec <code>srcset</code> et <code>sizes</code> (condition entre parenthèse, suivi d'un espace et de la largeur souhaitée) : commutateur de
+        résolution</p>
+      <img srcset="japon-320.jpg 320w,
+                  japon-full.jpg 780w" 
+           sizes="(max-width: 320px) 280px,
+                  780px" 
+            src="japon-full.jpg" alt="tour bouddhiste et mont fuji en fond">
+
+    </section>
+  </main>
+</body>
+
+</html>

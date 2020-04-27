@@ -12,9 +12,10 @@ self.addEventListener('install', function(e) {
 });
 
 self.addEventListener('fetch', function(e) {
-  console.log(e.request.url);
+  console.log("fetch : " + e.request.url);
   e.respondWith(
     caches.match(e.request).then(function(response) {
+      console.log("serviceworker rapporte : " + response);
       return response || fetch(e.request);
     })
   );
